@@ -1,0 +1,60 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.sidebar {
+    /* color: red; */
+    width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.profile_image {
+    /* border: 1px solid black; */
+    padding: 10px;
+    width: 150px; /* Smaller width so image looks balanced */
+    margin: auto;
+    border-radius: 8px; /* Optional: rounded corners */
+}
+
+.profile_image img {
+    width: 100%; /* Make image fill container */
+    height: auto; /* Keep aspect ratio */
+    display: block;
+    border-radius: 50%; /* Optional: circle profile image */
+}
+.profile_image .img {
+    width: 100%; /* Make image fill container */
+    height: auto; /* Keep aspect ratio */
+    display: block;
+    border-radius: 50%; /* Optional: circle profile image */
+}
+.profile_image .img {
+    width: 100%; /* Make image fill container */
+    height: 110px; /* Keep aspect ratio */
+    display: block;
+    text-align: center;
+    border-radius: 50%;
+    background-color: cadetblue;
+}
+
+.navbar {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+    border-radius: 6px;
+}
+
+.right_sidebar {
+    width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
