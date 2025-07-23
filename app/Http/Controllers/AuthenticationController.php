@@ -12,22 +12,24 @@ class AuthenticationController extends Controller
     }
 
     public function authenticate(Request $request){
-
+// return $request;
      $request->validate([
     'email' => 'required',
     'password' => 'min:6',
 ]);
 
 
+// return $request->email;
    $response=User::where("email",$request->email)->first();
-//    return $response;
+
    if($response){
         if($response->role==="user"){
-            $user=auth()->guard('admin')->attempt([
+            $user=auth()->guard('user')->attempt([
                 'email'=>$request->email,
                 'password'=>$request->password,
             ]);
             if($user){
+                // return "goof";
                 return redirect()->route('dshboardhtml');
             }
             else{

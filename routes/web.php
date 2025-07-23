@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\admin\BlogMgmtController;
-use App\Http\Controllers\admin\IdeaMgmtController;
+use App\Http\Controllers\frontend\IdeaCrudMgmtController;
+use App\Http\Controllers\admin\IdeaCategoryMgmtController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserAccountCreation;
 use App\Http\Controllers\AuthenticationController;
@@ -42,13 +43,13 @@ Route::post('updateblogpost/{id}', [ BlogMgmtController::class, 'updateblogpost'
 
 
 
-Route::get('ideacategory', [ IdeaMgmtController::class, 'createcategory' ])->name('category.create');
-Route::post('ideacategory/post', [ IdeaMgmtController::class, 'postideacategory' ])->name('category.post');
+Route::get('ideacategory', [ IdeaCategoryMgmtController::class, 'createcategory' ])->name('category.create');
+Route::post('ideacategory/post', [ IdeaCategoryMgmtController::class, 'postideacategory' ])->name('category.post');
 
-Route::get('get/ideacategory', [ IdeaMgmtController::class, 'showcategory' ])->name('category.show');
-Route::get('deletecategory/{id}', [ IdeaMgmtController::class, 'deletecategory' ])->name('category.delete');
-Route::get('updatecategory/{id}', [ IdeaMgmtController::class, 'updatecategory' ])->name('category.update');
-Route::post('updatecategorypost/{id}', [ IdeaMgmtController::class, 'postupdatecategory' ])->name('category.updatepost');
+Route::get('get/ideacategory', [ IdeaCategoryMgmtController::class, 'showcategory' ])->name('category.show');
+Route::get('deletecategory/{id}', [ IdeaCategoryMgmtController::class, 'deletecategory' ])->name('category.delete');
+Route::get('updatecategory/{id}', [ IdeaCategoryMgmtController::class, 'updatecategory' ])->name('category.update');
+Route::post('updatecategorypost/{id}', [ IdeaCategoryMgmtController::class, 'postupdatecategory' ])->name('category.updatepost');
 
 
 
@@ -67,12 +68,28 @@ Route::post('postdata3/', [ UserAccountCreation::class, 'workinginfo' ])->name('
 // authentication controller
 
 Route::get('auth/login/', [ AuthenticationController::class, 'loginform' ])->name('auth.loginpage');
-Route::post('authenticate/', [ AuthenticationController::class, 'authenticate' ])->name('user.auth');
+Route::post('authenticate/user', [ AuthenticationController::class, 'authenticate' ])->name('user.auth');
 
 
 
 Route::get('user/dashboard', [ UserPannelController::class, 'index' ])->name('user.dashboardpannel');
-Route::get('user/logout', [ UserPannelController::class, 'logoutuser' ])->name('user.dashboardpannel');
+Route::get('user/logout', [ UserPannelController::class, 'logoutuser' ])->name('user.logout');
+Route::get('ugetid', [ UserPannelController::class, 'getid' ])->name('user.getid');
+Route::post('profile/update', [ UserPannelController::class, 'profileupdate' ])->name('user.profileupdate');
+Route::get('account/setting', [ UserPannelController::class, 'accountsetting' ])->name('user.accountsetting');
+Route::post('account/update', [ UserPannelController::class, 'accountupdate' ])->name('user.accountupdate');
+Route::get('profile/remove', [ UserPannelController::class, 'removeprofile' ])->name('user.removeprofile');
+
+
+Route::get('user/idea', [ IdeaCrudMgmtController::class, 'index' ])->name('user.ideaform');
+Route::post('user/idea/post', [ IdeaCrudMgmtController::class, 'ideapost' ])->name('user.ideapost');
+Route::get('user/idea/get', [ IdeaCrudMgmtController::class, 'getidea' ])->name('user.getidea');
+Route::get('idea/xyz/{id}', [ IdeaCrudMgmtController::class, 'deleteidea' ])->name('user.deleteidea');
+Route::get('idea/update/{id}', [ IdeaCrudMgmtController::class, 'updateidea' ])->name('user.updateidea');
+Route::post('idea/update/post/{id}', [ IdeaCrudMgmtController::class, 'updateideapost' ])->name('user.updateideapost');
+
+
+
 
 Route::get('image-upload', [ImageController::class, 'index']);
 Route::post('image-upload', [ImageController::class, 'store'])->name('image.store');

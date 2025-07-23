@@ -1,5 +1,7 @@
 @extends('Frontend.master_thems.index')
 @section('frontend_content')
+
+@include('Frontend.master_thems.slider')
   <section class="section-1 py-5 "> 
     <div class="container">
         <div class="card border-0 shadow p-5">

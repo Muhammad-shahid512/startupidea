@@ -14,7 +14,7 @@
 					</li>										
 				</ul>				
 @if(auth()->guard('user')->check())
-    <a class="btn btn-outline-primary me-2">
+    <a class="btn btn-outline-primary me-2" href="{{route('user.dashboardpannel')}}">
         {{ auth()->guard('user')->user()->name }}
     </a>
 @else
