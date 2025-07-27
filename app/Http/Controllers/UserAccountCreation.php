@@ -16,7 +16,7 @@ class UserAccountCreation extends Controller
     }
     public function postemailpassword(Request $request){
         // return $request;
-        $credential=$request->validate([
+    $request->validate([
     'email' => 'required',
     'password' => 'min:6',
     'password_confirmation' => 'required_with:password|same:password|min:6'
@@ -73,8 +73,6 @@ return redirect()->route('user.personal_working_form');
     'working_category' => 'required',
     'working' => 'required',
     ]);
-
-
     $userId = session('user_session_id');
 $user=User::findOrFail($userId);
 $user->working_category=$request->working_category;

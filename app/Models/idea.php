@@ -14,5 +14,11 @@ class idea extends Model
     public function ideacate() {
     return $this->belongsTo(IdeaCategory::class, 'idea_category');
 }
+   public function getuser() {
+    return $this->belongsTo(User::class, 'user_id');
+}        
 
+public function getfeedback() {
+    return $this->hasMany(feedback::class,"idea_id");
+}               
 }

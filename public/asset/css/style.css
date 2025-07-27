@@ -3552,6 +3552,15 @@ input[type="button"].btn-block {
   .card > .list-group:last-child .list-group-item:last-child {
     border-bottom-right-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem; }
+    .active-item {
+    background-color: #4caf50; /* tumhara fixed green color */
+    color: red;              /* text white kar de */
+    font-weight: bold;         /* optional, thoda bold text */
+}
+
+.list-group-item{
+  color: red;
+}
 
 .card-body {
   flex: 1 1 auto;

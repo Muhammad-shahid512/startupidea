@@ -19,15 +19,21 @@ class IdeaCrudMgmtController extends Controller
     }
 
     public function ideapost(Request $request){
+     $request->validate([
+    'title' => 'required',
+    'description' => 'required',
+    'idea_type' => 'required',
+    ]);
         // return $request;
         $idea=new idea();
         $idea->title=$request->title;
         $idea->user_id=auth()->guard('user')->user()->id;
         $idea->description=$request->description;
         $idea->date=now();
+        $idea->slug=generateSlug();
         $idea->idea_category=$request->idea_type;
         $idea->save();
-        return redirect()->back()->with("success","Good ho gya");
+        return redirect()->route('user.getidea')->with("success","Good ho gya");
     }
 
     public function getidea(Request $request){
@@ -36,43 +42,42 @@ class IdeaCrudMgmtController extends Controller
         if($request->query("show")==="all"){
           $idea = idea::where("user_id", $get_id->id)
            ->with("ideacate")
-                      ->select(["title",'description',"id",'idea_category'])
+                      ->select(["title",'description',"id",'idea_category',"slug"])
                     ->latest()
            ->get();
         }
         else{
             $idea = idea::where("user_id", $get_id->id)
            ->with("ideacate")
-           ->select(["title",'description',"id",'idea_category'])
+           ->select(["title",'description',"id",'idea_category',"slug"])
                      ->latest()
-           ->take(1)
+           ->take(3)
                    ->get();
         }
+        // return $idea;
        
                 return view('Frontend.userpannel.listidea',compact('idea'));
 
     }
 
-    public function deleteidea($id){
-     DB::table('ideas')->where('id', $id)->delete();
+    public function deleteidea($slug){
+     DB::table('ideas')->where('slug', $slug)->delete();
     return redirect()->back()->with('success', 'Idea deleted successfully!');
 }
 
-public function updateidea($id){
-
-    $data['idea']=idea::findOrFail($id)->first();
+public function updateidea($slug){
+// return $id;
+    $data['idea']=idea::where("slug",$slug)->first();
+    // return $data;
     $data['working_category']=ideacategory::all();
 
     return view('Frontend.userpannel.updateidea',$data);
 }
 
-public function updateideapost(Request $request,$id){
-    // return $id;
-    // return $request;
-
-     $idea=idea::find($id);
+public function updateideapost(Request $request,$slug){
+     $idea=idea::where("slug",$slug)->first();
  $idea->title=$request->title;
-        $idea->user_id=auth()->guard('user')->user()->id;
+
         $idea->description=$request->description;
         $idea->idea_category=$request->idea_type;
         $idea->date=now();

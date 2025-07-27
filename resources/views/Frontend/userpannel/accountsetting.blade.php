@@ -7,7 +7,7 @@
                     <nav aria-label="breadcrumb" class=" rounded-3 p-3 mb-4">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">My Jobs</li>
+                            <li class="breadcrumb-item active">Account settings</li>
                         </ol>
                     </nav>
                 </div>
@@ -30,7 +30,7 @@
                                 <img src="{{ asset('images/thumbnail/' . auth()->guard('user')->user()->profile) }}"
                                     alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                             @else
-                                <div class=" rounded-circle bg-secondary  text-black d-flex align-items-center justify-content-center"
+                                <div class=" rounded-circle text-white bg-secondary  text-black d-flex align-items-center justify-content-center"
                                     style="width: 100px; height: 100px; font-size: 50px; color: black; border: 1px solid black;">
                                     {{ strtoupper(substr(auth()->guard('user')->user()->name, 0, 1)) }}
                                 </div>

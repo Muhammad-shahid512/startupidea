@@ -7,7 +7,7 @@
                     <nav aria-label="breadcrumb" class=" rounded-3 p-3 mb-4">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">My Jobs</li>
+                            <li class="breadcrumb-item active">Post Ideas</li>
                         </ol>
                     </nav>
                 </div>
@@ -25,34 +25,46 @@
                                 </div>
                             @endif
 
-                            <h3 class="fs-4 mb-1">My Profile</h3>
+                            <h3 class="fs-4 mb-1">Add Idea </h3>
                             <form action="{{ route('user.ideapost') }}" method="post">
                                 @csrf
                                 <div class="mb-4">
 
                                     <label for="" class="mb-2">Idea Type*</label>
-                                    <select name="idea_type" class="form-control">
+                                    <select name="idea_type" class="form-control  @error('idea_type') is-invalid @enderror">
+                                        <option value="" disabled selected>Select Idea Type</option>
+
                                         @foreach ($ideacategory as $value)
                                             <option value="{{ $value->id }}">
                                                 {{ $value->name }}
                                             </option>
+                                            @error('idea_type')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         @endforeach
                                     </select>
-                                    <div class="mb-4">
+                                    <div class="mb-1">
                                         <label for="" class="mt-3 mb-2">Title*</label>
                                         <input type="text" name="title" placeholder="Enter idea Title"
-                                            class="form-control">
-
+                                            class="form-control  @error('title') is-invalid @enderror"
+                                            value="{{ old('title') }}">
+                                        @error('title')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-4">
                                         <label for="" class="mt-3 mb-2">Description*</label>
-                                        <textarea name="description" class="form-control" style="height:100px;" columns="40"></textarea>
+                                        <textarea name="description" class="form-control @error('description') is-invalid @enderror" style="height:100px;"
+                                            columns="40"></textarea>
+                                        @error('description')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
                         </div>
                         <div class="card-footer  p-4">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                     </form>

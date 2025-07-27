@@ -26,7 +26,7 @@
                             @endif
 
                             <h3 class="fs-4 mb-1">My Profile</h3>
-                            <form action="{{ route('user.updateideapost', $idea->id) }}" method="post">
+                            <form action="{{ route('user.updateideapost', $idea->slug) }}" method="post">
                                 @csrf
                                 <div class="mb-4">
 

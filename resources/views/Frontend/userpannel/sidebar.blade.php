@@ -7,7 +7,7 @@
                     <img src="{{ asset('images/thumbnail/' . auth()->guard('user')->user()->profile) }}" alt="avatar"
                         class="rounded-circle img-fluid" style="width: 150px;">
                 @else
-                    <div class=" rounded-circle bg-secondary mx-auto text-black d-flex align-items-center justify-content-center"
+                    <div class=" rounded-circle  text-white bg-secondary mx-auto text-black d-flex align-items-center justify-content-center"
                         style="width: 150px; height: 150px; font-size: 50px; color: black; border: 1px solid black;">
                         {{ strtoupper(substr(auth()->guard('user')->user()->name, 0, 1)) }}
                     </div>
@@ -59,9 +59,13 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                         <a href="{{ route('user.ideaform') }}">Post a Idea</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-center p-3 
+                         {{ request()->routeIs('user.getidea') ? 'active-item' : 'no-active-items' }}">
                         <a href="{{ route('user.getidea') }}">My Ideas</a>
                     </li>
+
+
                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                         <a href="job-applied.html"> Extrem Idea</a>
                     </li>

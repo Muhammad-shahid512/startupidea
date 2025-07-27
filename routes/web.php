@@ -6,6 +6,8 @@ use App\Http\Controllers\admin\IdeaCategoryMgmtController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserAccountCreation;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\frontend\FeedbackViewController;
+use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\UserPannelController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -84,11 +86,14 @@ Route::get('profile/remove', [ UserPannelController::class, 'removeprofile' ])->
 Route::get('user/idea', [ IdeaCrudMgmtController::class, 'index' ])->name('user.ideaform');
 Route::post('user/idea/post', [ IdeaCrudMgmtController::class, 'ideapost' ])->name('user.ideapost');
 Route::get('user/idea/get', [ IdeaCrudMgmtController::class, 'getidea' ])->name('user.getidea');
-Route::get('idea/xyz/{id}', [ IdeaCrudMgmtController::class, 'deleteidea' ])->name('user.deleteidea');
-Route::get('idea/update/{id}', [ IdeaCrudMgmtController::class, 'updateidea' ])->name('user.updateidea');
-Route::post('idea/update/post/{id}', [ IdeaCrudMgmtController::class, 'updateideapost' ])->name('user.updateideapost');
+Route::get('idea/xyz/{slug}', [ IdeaCrudMgmtController::class, 'deleteidea' ])->name('user.deleteidea');
+Route::get('idea/update/{slug}', [ IdeaCrudMgmtController::class, 'updateidea' ])->name('user.updateidea');
+Route::post('idea/update/post/{slug}', [ IdeaCrudMgmtController::class, 'updateideapost' ])->name('user.updateideapost');
 
 
+
+Route::get('/feed', [ HomeController::class, 'GetAllIdeas' ])->name('clienthomepage');
+Route::get('/viewfeedback/{slug}', [ FeedbackViewController::class, 'viewfeedback' ])->name('viewfeedback');
 
 
 Route::get('image-upload', [ImageController::class, 'index']);

@@ -30,7 +30,7 @@ class AuthenticationController extends Controller
             ]);
             if($user){
                 // return "goof";
-                return redirect()->route('dshboardhtml');
+                return redirect()->route('clienthomepage');
             }
             else{
          return redirect()->route("auth.loginpage")->with('danger',"Enter Correct Credentails");
