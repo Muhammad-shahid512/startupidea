@@ -94,6 +94,7 @@ Route::post('idea/update/post/{slug}', [ IdeaCrudMgmtController::class, 'updatei
 
 Route::get('/feed', [ HomeController::class, 'GetAllIdeas' ])->name('clienthomepage');
 Route::get('/viewfeedback/{slug}', [ FeedbackViewController::class, 'viewfeedback' ])->name('viewfeedback');
+Route::post('/postcomment', [ FeedbackViewController::class, 'postcomment' ])->name('postcomment');
 
 
 Route::get('image-upload', [ImageController::class, 'index']);
