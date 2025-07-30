@@ -13,13 +13,28 @@ use App\Http\Controllers\frontend\UserPannelController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
+
+
+
+Route::group(["prefix"=>"admin"],function(){
+
+             Route::group(['middleware'=>"admin.guest"],function(){
+
+Route::get('auth/login/', [ AuthenticationController::class, 'loginform' ])->name('auth.loginpage');
+Route::post('authenticate/user', [ AuthenticationController::class, 'authenticate' ])->name('user.auth');
+
+
+             });
+
+             Route::group(["middleware"=>"admin.auth"],function(){
+
 Route::get('Dashboard', [ AdminDashboardController::class, 'welcome' ])->name('welcome');
 Route::get('show/admin', [ AdminDashboardController::class, 'showadmin' ])->name('showadmin');
 Route::get('add/admin', [ AdminDashboardController::class, 'addadmin' ])->name('addadmin');
 Route::post('add/admin', [ AdminDashboardController::class, 'adminpost' ])->name('adminpost');
-Route::get('admin/delete/{id}', [ AdminDashboardController::class, 'admindelete' ])->name('admindelete');
+Route::get('delete/{id}', [ AdminDashboardController::class, 'admindelete' ])->name('admindelete');
 
-Route::get('admin/logout', [ AdminDashboardController::class, 'logoutadmin' ])->name('logoutadmin');
+Route::get('logout', [ AdminDashboardController::class, 'logoutadmin' ])->name('logoutadmin');
 
 Route::get('showblog', [ BlogMgmtController::class, 'index' ])->name('blog.show');
 Route::get('createblog', [ BlogMgmtController::class, 'createblog' ])->name('blog.create');
@@ -39,3 +54,10 @@ Route::get('updatecategory/{id}', [ IdeaCategoryMgmtController::class, 'updateca
 Route::post('updatecategorypost/{id}', [ IdeaCategoryMgmtController::class, 'postupdatecategory' ])->name('category.updatepost');
 
 
+
+             });
+
+
+
+});
+// Route::group("middleware")
