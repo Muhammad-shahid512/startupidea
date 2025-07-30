@@ -109,7 +109,6 @@
                                                         @if (auth()->guard('user')->user()->id === $value->user_id)
                                                             <a href="{{ route('deletecomment', $value->slug) }}"
                                                                 class="btn btn-danger btn-sm">Delete</a>
-                                                            <a href="" class="btn btn-secondary btn-sm">Update</a>
                                                         @endif
 
                                                     </div>
@@ -145,7 +144,6 @@
 
                 let name = $('#name').val();
                 let idea_id = $('#idea_id').val();
-                alert(idea_id);
 
                 if (name.trim() === '') {
                     $('#response-message').text('Please enter a comment.');

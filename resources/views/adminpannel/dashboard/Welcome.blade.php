@@ -7,7 +7,7 @@
                     <div class="stat-widget-two card-body">
                         <div class="stat-content">
                             <div class="stat-text">Total Login Users </div>
-                            <div class="stat-digit"> <i class="fa fa-usd"></i>{{ $totalusers }}</div>
+                            <div class="stat-digit">{{ $totalusers }}</div>
                         </div>
 
                     </div>
@@ -18,7 +18,7 @@
                     <div class="stat-widget-two card-body">
                         <div class="stat-content">
                             <div class="stat-text">Total ideas 💡 </div>
-                            <div class="stat-digit"> <i class="fa fa-usd"></i>{{ $totalideas }}</div>
+                            <div class="stat-digit">{{ $totalideas }}</div>
                         </div>
 
                     </div>
@@ -29,7 +29,7 @@
                     <div class="stat-widget-two card-body">
                         <div class="stat-content">
                             <div class="stat-text">Total Feedback </div>
-                            <div class="stat-digit"> <i class="fa fa-usd"></i>{{ $totalfeedback }}</div>
+                            <div class="stat-digit"> {{ $totalfeedback }}</div>
                         </div>
 
                     </div>

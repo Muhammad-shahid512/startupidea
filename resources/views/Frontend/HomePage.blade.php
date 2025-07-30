@@ -10,15 +10,15 @@
 
 
                         <div class="col-md-6 mb-3 mb-sm-3 mb-lg-0">
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Location">
+                            <input type="text" id="search" value="{{ request('search') }}" class="form-control"
+                                name="search" id="search" placeholder="Location">
                         </div>
                         <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
                             <select name="category" id="category" class="form-control">
-                                <option value="">Select a Category</option>
-                                <option value="">Engineering</option>
-                                <option value="">Accountant</option>
-                                <option value="">Information Technology</option>
-                                <option value="">Fashion designing</option>
+                                <option selected disabled>Select</option>
+                                @foreach ($ideacategories as $value)
+                                    <option name="ca" value="{{ $value->name }}">{{ $value->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -170,3 +170,17 @@
         });
     });
 </script>
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $("#search").on('input', function() {
+                if ($(this).val().length === 0) {
+                    location.reload();
+                    var cleanUrl = window.location.origin + window.location.pathname;
+                    window.location.href = cleanUrl;
+                }
+            })
+        })
+    </script>
+@endsection
