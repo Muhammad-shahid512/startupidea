@@ -29,8 +29,25 @@ class AuthenticationController extends Controller
                 'password'=>$request->password,
             ]);
             if($user){
-                // return "goof";
+                
                 return redirect()->route('clienthomepage');
+            }
+            else{
+         return redirect()->route("auth.loginpage")->with('danger',"Enter Correct Credentails");
+
+            }
+            
+
+
+        }
+        elseif($response->role==="admin"){
+   $user=auth()->guard('admin')->attempt([
+                'email'=>$request->email,
+                'password'=>$request->password,
+            ]);
+            if($user){
+                
+                return redirect()->route('welcome');
             }
             else{
          return redirect()->route("auth.loginpage")->with('danger',"Enter Correct Credentails");
