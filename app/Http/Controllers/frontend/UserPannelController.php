@@ -19,10 +19,7 @@ class UserPannelController extends Controller
         return view('Frontend.userpannel.Dashboard');
     }
 
-    public function logoutuser(){
-            Auth::guard('user')->logout();
-            return redirect()->route('auth.loginpage');
-    }
+  
 
     public function getid(){
          return Auth::guard('user')->user()->name; 
@@ -48,6 +45,7 @@ class UserPannelController extends Controller
             $id=auth()->guard('user')->user()->id;
                   User::where('id', $id)->update(['profile' => $imageName]);
         }
+      
        }
 
 
@@ -85,4 +83,11 @@ public function removeprofile(){
     
             return redirect()->back()->with('success',"Update profile image");
 }
+
+
+
+  public function logoutuser(){
+            Auth::guard('user')->logout();
+            return redirect()->route('auth.loginpage');
+    }
 }

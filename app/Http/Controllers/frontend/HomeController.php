@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function GetAllIdeas(){
         $idea=idea::with(["ideacate","getuser"])
            ->get();
-
+// return $idea;
      
 return view('Frontend.HomePage',compact('idea'));
 

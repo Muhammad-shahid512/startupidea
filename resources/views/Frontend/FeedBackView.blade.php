@@ -3,7 +3,12 @@
 @section('frontend_content')
     <section class="section-2 bg-2 py-5">
         <div class="container">
-            <h2>Popular Ideas</h2>
+            {{-- <h2>{{  }}</h2> --}}
+            <a href="{{ route('clienthomepage') }}">
+                <img src="{{ asset('asset/frontend/assets/images/arrow_back2.png') }}"
+                    style="width: 30px;background-color:yellowgreen;color:whitesmoke" style="font-optical-sizing: 20px"
+                    alt="">
+            </a>
             <div class="row">
                 <div class="col-lg-10">
                     <div class="card border-0 shadow mb-4">
@@ -45,22 +50,16 @@
                                         </div>
                                     </div>
 
-                                    <p class="short-text mt-2">
-                                        @if (\Illuminate\Support\Str::wordCount($idea->description) > 20)
-                                            {!! nl2br(e(\Illuminate\Support\Str::words($idea->description, 20, '...'))) !!}
-                                            <a href="javascript:void(0);" onclick="shahid()" class="show-more">Show more</a>
-                                        @else
-                                            {!! nl2br(e($idea->description)) !!}
-                                        @endif
-                                    </p>
-                                    <p class="full-text d-none">
+                                    <p class=" mt-2">
+
                                         {!! nl2br(e($idea->description)) !!}
+
                                     </p>
+
                                 </div>
                                 <hr>
 
-                                <a href="{{ route('viewfeedback', $idea->slug) }}" class="btn btn-sm btn-info">View
-                                    Feedback</a>
+                                <h6 class="text-center" style="color:coral">Feedback</h6>
 
                                 <div class="comments d-block mt-2">
                                     <section>
@@ -105,6 +104,15 @@
                                                             </p>
                                                         </div>
                                                     </div>
+
+                                                    <div>
+                                                        @if (auth()->guard('user')->user()->id === $value->user_id)
+                                                            <a href="{{ route('deletecomment', $value->slug) }}"
+                                                                class="btn btn-danger btn-sm">Delete</a>
+                                                            <a href="" class="btn btn-secondary btn-sm">Update</a>
+                                                        @endif
+
+                                                    </div>
                                                 </div>
                                                 <p class="text-muted mt-2" style="font-size: 13px; font-weight:600">
                                                     {{ $value->feedback }}</p>
@@ -116,9 +124,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-2" style="border: 1px solid red">
-                        heh
-                    </div>
+
                 </div>
             </div>
     </section>
@@ -157,7 +163,7 @@
                     success: function(response) {
                         $('#response-message').text(response.message ||
                             'Comment posted successfully!');
-                        $('#name').val(''); // clear input
+                        $('#name').val('');
                         location.reload(true);
                     },
                     error: function(xhr) {

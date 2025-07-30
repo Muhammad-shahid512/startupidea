@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\feedback;
 use App\Models\idea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class FeedbackViewController extends Controller
     public function viewfeedback($slug){
          $idea=idea::where("slug",$slug)->with(["ideacate","getfeedback.getuser","getuser"])
            ->first();
-        //    return $idea;
+          //  return $idea;
         return view('Frontend.FeedBackView',compact('idea'));
 
 
@@ -27,8 +28,15 @@ $user_id = Auth::guard('user')->user()->id;
       'user_id'=>$user_id,
       'idea_id'=>$idea_id,
       'feedback'=>$name,
+       'slug'=>generateSlug()
     ]);
     return response()->json(['message' => 'Hello, ' . $name . '!'.$idea_id.$user_id]);
   
+    }
+
+    public function deletecomment($slug){
+      feedback::where("slug",$slug)->delete();
+          return redirect()->back()->with('success', 'Idea deleted successfully!');
+    
     }
 }

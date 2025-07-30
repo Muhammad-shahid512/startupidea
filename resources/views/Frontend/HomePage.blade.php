@@ -3,28 +3,36 @@
     <section class="section-1 py-5 ">
         <div class="container">
             <div class="card border-0 shadow p-5">
-                <div class="row">
+                <form action="">
+                    <div class="row">
 
-                    <div class="col-md-6 mb-3 mb-sm-3 mb-lg-0">
-                        <input type="text" class="form-control" name="search" id="search" placeholder="Location">
-                    </div>
-                    <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
-                        <select name="category" id="category" class="form-control">
-                            <option value="">Select a Category</option>
-                            <option value="">Engineering</option>
-                            <option value="">Accountant</option>
-                            <option value="">Information Technology</option>
-                            <option value="">Fashion designing</option>
-                        </select>
-                    </div>
 
-                    <div class=" col-md-3 mb-xs-3 mb-sm-3 mb-lg-0">
-                        <div class="d-grid gap-2">
-                            <a href="jobs.html" class="btn btn-primary btn-block">Search</a>
+
+
+                        <div class="col-md-6 mb-3 mb-sm-3 mb-lg-0">
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Location">
+                        </div>
+                        <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
+                            <select name="category" id="category" class="form-control">
+                                <option value="">Select a Category</option>
+                                <option value="">Engineering</option>
+                                <option value="">Accountant</option>
+                                <option value="">Information Technology</option>
+                                <option value="">Fashion designing</option>
+                            </select>
                         </div>
 
+                        <div class=" col-md-3 mb-xs-3 mb-sm-3 mb-lg-0">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary btn-block">Search</button>
+                            </div>
+
+                        </div>
+
+
+
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>
@@ -112,50 +120,14 @@
 
                                     </div>
                                     <hr>
-                                    <a href="{{ route('viewfeedback', $value->slug) }}" class="btn btn-sm btn-info"
-                                        id="viewfeedback" onclick="view()">View
+                                    <a href="{{ route('viewfeedback', $value->slug) }}"
+                                        class="btn btn-sm btn-info text-white" id="viewfeedback" onclick="view()">View
                                         Feedback</a>
                                     <div class="comments d-none" id="xxl">
                                         <section class="mt-2">
-                                            <div style="width: 98%; display: flex; margin-bottom: 10px;">
 
 
-                                                <input type="text" name="search" placeholder="Comments..."
-                                                    style="
-                                                    flex: 1;
-                                                    padding: 6px 12px;
-                                                    border: 1px solid #ccc;
-                                                    border-radius: 4px 0 0 4px;
-                                                    outline: none;
-                                                    font-size: 14px;
-                                                ">
-                                                <button class="btn btn-sm btn-outline-info"
-                                                    style="
-                                                        border-radius: 0 4px 4px 0;
-                                                        padding: 6px 12px;
-                                                        font-size: 14px;
-                                                    ">
-                                                    Post
-                                                </button>
 
-
-                                            </div>
-
-                                            <div class="user_comments">
-                                                <div class="d-flex align-items-center">
-                                                    @if ($value->getuser->profile)
-                                                        <img src="{{ asset('images/thumbnail/' . $value->getuser->profile) }}"
-                                                            alt="avatar" class="rounded-circle mr-3"
-                                                            style="width: 40px; height: 40px; object-fit: cover;">
-                                                    @else
-                                                        <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mr-3"
-                                                            style="width: 60px; height: 60px; font-size: 30px; border: 1px solid #ccc;">
-                                                            {{-- {{ strtoupper(($value->getuser->name, 0, 1)) }} --}}
-                                                        </div>
-                                                    @endif
-
-                                                    <div>
-                                                    </div>
                                         </section>
 
                                     </div>
@@ -184,10 +156,17 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('viewfeedback').onclick = function() {
-            var chat = document.getElementById('xxl');
-            chat.classList.toggle('d-none');
-        };
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.show-more').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var parent = btn.closest('.post_content'); // find container
+                var shortText = parent.querySelector('.short-text');
+                var fullText = parent.querySelector('.full-text');
+                shortText.classList.toggle('d-none');
+                fullText.classList.toggle('d-none');
+                btn.textContent = fullText.classList.contains('d-none') ? 'Show more' :
+                    'Show less';
+            });
+        });
     });
 </script>

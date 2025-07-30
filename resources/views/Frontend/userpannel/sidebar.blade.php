@@ -23,12 +23,13 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('user.profileupdate') }}" method="Post"
-                                    enctype="multipart/form-data">
+                                <form id="ajax-form" action="" method="Post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <input type="file" class="form-control" id="image" name="profile">
+                                        <input type="file" class="form-control" required id="profile"
+                                            name="profile">
                                     </div>
+
                                     <div class="d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary mx-3">Update</button>
                                         <button type="button" class="btn btn-secondary"
@@ -36,6 +37,7 @@
                                     </div>
 
                                 </form>
+
                             </div>
                         </div>
                     </div>
@@ -66,13 +68,44 @@
                     </li>
 
 
+
                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                        <a href="job-applied.html"> Extrem Idea</a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                        <a href="saved-jobs.html">Logout </a>
+                        <a href="{{ route('user.logout') }}">Logout </a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#ajax-form').submit(function(event) {
+                event.preventDefault();
+
+                var formData = new FormData(this);
+                alert(formData);
+                $.ajax({
+                    url: '{{ url('/profile/update') }}',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false, // very important
+                    processData: false, // very important
+                    success: function(response) {
+                        location.reload(true);
+                    },
+                    error: function(xhr) {
+                        console.error(xhr.responseText);
+                        alert('Error: ' + (xhr.responseJSON?.message || xhr.responseText));
+                    }
+                });
+            });
+        });
+    </script>

@@ -10,7 +10,7 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="pinterest" content="nopin" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('asset/frontend/assets/css/style.css') }}" />
@@ -57,8 +57,7 @@
         </div>
     </footer>
     @yield('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>"></script>
 
     <script src="{{ asset('asset/frontend/ssets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('asset/frontend/assets/js/bootstrap.bundle.5.1.3.min.js') }}"></script>

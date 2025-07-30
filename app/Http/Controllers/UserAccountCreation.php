@@ -79,6 +79,10 @@ $user->working_category=$request->working_category;
 $user->working=$request->working;
 
 $user->save();
-return redirect()->route('dshboardhtml');
+return redirect()->route('user.wrapperscreen')->with("success","You have Successfully create account on StartupIdea");
+    }
+
+    public function wrapperscreen(){
+        return view('profilecreation.wrapper');
     }
 }
