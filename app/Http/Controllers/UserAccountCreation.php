@@ -17,7 +17,7 @@ class UserAccountCreation extends Controller
     public function postemailpassword(Request $request){
         // return $request;
     $request->validate([
-    'email' => 'required',
+    'email' => 'required|unique:users,email',
     'password' => 'min:6',
     'password_confirmation' => 'required_with:password|same:password|min:6'
 ]);
@@ -80,7 +80,10 @@ $user->working=$request->working;
 
 $user->save();
 return redirect()->route('user.wrapperscreen')->with("success","You have Successfully create account on StartupIdea");
-    }
+Session::getHandler()->destroy('user_session_id');
+
+   
+}
 
     public function wrapperscreen(){
         return view('profilecreation.wrapper');

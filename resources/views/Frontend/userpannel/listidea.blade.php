@@ -102,6 +102,8 @@
 
 
                                 </div>
+
+
                             @empty
                                 <h6 class="text-center"> No Idea data</h6>
                             @endforelse
@@ -109,26 +111,19 @@
                             @if (request('show') === 'all')
                                 {{-- <a href="{{ route('user.getidea') }}" class="btn btn-secondary">Show Less</a> --}}
                             @else
-                                <a href="{{ route('user.getidea', ['show' => 'all']) }}" class="text-center p-2 mb-2" <div
-                                    style="border: 1px solid black;border-radius: 30px"
-                                    class="mt-5 mx-auto text-center p-4">
-                                    Show More <i class="bi bi-arrow-right"></i>
+                                <a href="{{ route('user.getidea', ['show' => 'all']) }}" class="text-center p-2 mb-2">
+                                    <div style="border: 1px solid black;border-radius: 30px"
+                                        class="mt-5 mx-auto text-center p-2">
+                                        All Ideas <i class="bi bi-arrow-right"></i>
+
+                                    </div>
+                                </a>
+                            @endif
+
+
                         </div>
-                        All <i class="bi bi-arrow-right"></i></a>
-                        @endif
-
-                        {{-- @if ($request('show') == 'all')
-                                <a href="">show less</a>
-                            @else
-                                <a href="">Show more</a>
-                            @endif --}}
-                        {{-- <div style="border: 1px solid black;border-radius: 30px" class="mt-5 mx-auto text-center p-2">
-                                Show More <i class="bi bi-arrow-right"></i>
-                            </div> --}}
-
                     </div>
                 </div>
-            </div>
     </section>
 @endsection
 <script>

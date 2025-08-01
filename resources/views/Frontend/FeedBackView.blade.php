@@ -29,7 +29,7 @@
                                         @else
                                             <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mr-3"
                                                 style="width: 60px; height: 60px; font-size: 30px; border: 1px solid #ccc;">
-                                                {{-- {{ strtoupper(($value->getuser->name, 0, 1)) }} --}}
+                                                {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($idea->getuser->name, 0, 1)) }}
                                             </div>
                                         @endif
 

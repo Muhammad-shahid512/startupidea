@@ -5,10 +5,6 @@
             <div class="card border-0 shadow p-5">
                 <form action="">
                     <div class="row">
-
-
-
-
                         <div class="col-md-6 mb-3 mb-sm-3 mb-lg-0">
                             <input type="text" id="search" value="{{ request('search') }}" class="form-control"
                                 name="search" id="search" placeholder="Location">
@@ -17,7 +13,10 @@
                             <select name="category" id="category" class="form-control">
                                 <option selected disabled>Select</option>
                                 @foreach ($ideacategories as $value)
-                                    <option name="ca" value="{{ $value->name }}">{{ $value->name }}</option>
+                                    <option value="{{ $value->name }}"
+                                        {{ $value->name === request('category') ? 'selected' : '' }}>
+                                        {{ $value->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -66,13 +65,14 @@
                                             @else
                                                 <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mr-3"
                                                     style="width: 60px; height: 60px; font-size: 30px; border: 1px solid #ccc;">
-                                                    {{-- {{ strtoupper(($value->getuser->name, 0, 1)) }} --}}
+                                                    {{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($value->getuser->name, 0, 1)) }}
                                                 </div>
                                             @endif
 
                                             <div>
                                                 <small style="font-weight:800;margin-left:15px" class="ml-2"
-                                                    style="font-size: 16px;">{{ $value->getuser->name }}</small>
+                                                    style="font-size: 16px;">{{ $value->getuser->name }}
+                                                    {{ $value->getuser->last_name }}</small>
                                                 <p class="mb-0 text-muted" style="font-size: 14px;800;margin-left:15px;">
                                                     {{ auth()->guard('user')->user()->working }}</p>
                                             </div>
@@ -80,8 +80,6 @@
 
                                         <div>
 
-                                            <!-- Example button or link like LinkedIn "Edit" or "More" -->
-                                            {{-- <a href="#" class="btn btn-outline-primary btn-sm">Edit Profile</a> --}}
                                         </div>
 
                                     </div>
@@ -98,7 +96,6 @@
 
                                         <p class="short-text mt-2">
                                             @if (\Illuminate\Support\Str::wordCount($value->description) > 20)
-                                                {{-- {{ $value->description }} --}}
                                                 {!! nl2br(e(\Illuminate\Support\Str::words($value->description, 20, '...'))) !!}
 
                                                 <a href="javascript:void(0);" onclick="shahid()" class="show-more">Show

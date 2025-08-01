@@ -33,7 +33,7 @@ class IdeaCrudMgmtController extends Controller
         $idea->slug=generateSlug();
         $idea->idea_category=$request->idea_type;
         $idea->save();
-        return redirect()->route('user.getidea')->with("success","Good ho gya");
+        return redirect()->route('user.getidea')->with("success","You have sucessfully create idea");
     }
 
     public function getidea(Request $request){

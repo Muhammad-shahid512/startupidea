@@ -46,7 +46,7 @@ Route::group(["middleware"=>"user.guest"],function(){
 
 
 Route::get('create_user_info/', [ UserAccountCreation::class, 'index' ])->name('user.emailpassword');
-Route::post('postdata1/', [ UserAccountCreation::class, 'postemailpassword' ])->name('user.emailpassword');
+Route::post('postdata1/', [ UserAccountCreation::class, 'postemailpassword' ])->name('user.emailpasswordpost');
 Route::get('create_personal_info/', [ UserAccountCreation::class, 'personal_info_form' ])->name('user.personal_info_form');
 Route::get('create_working_info/', [ UserAccountCreation::class, 'personal_working_form' ])->name('user.personal_working_form');
 

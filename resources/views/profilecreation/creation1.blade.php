@@ -56,7 +56,7 @@
                             <img src="{{ asset('asset/frontend/assets/images/logo.png') }}"
                                 class="img-fluid text-center" style="width:100px;" />
                         </div>
-                        <form action="{{ route('user.emailpassword') }}" method="post">
+                        <form action="{{ route('user.emailpasswordpost') }}" method="post">
                             @csrf
 
                             <div class="mb-3">

@@ -63,9 +63,7 @@
                         </div>
                         <a href="{{ route('auth.loginpage') }}" class="btn btn-sm btn-primary mt-2">Login Now</a>
                     </div>
-                    <div class="mt-4 text-center">
-                        <p>Have an account? <a href="login.html">Login</a></p>
-                    </div>
+
                 </div>
             </div>
         </div>
